@@ -57,6 +57,7 @@ def hello(imageurl):
         result=[]
         for k in coordinates_result1:
         	resultReturn = ""
+        	resultReturn = resultReturn + "["
         	for i in k:
 	            resultReturn = resultReturn + '{"x":' + str(i[0]) + ", " + "y"+":"+str(i[1])+ "},"
 	        resultReturn = resultReturn + "]"
@@ -64,6 +65,7 @@ def hello(imageurl):
         	result.append(resultReturn)
         for k in coordinates_result2:
         	resultReturn = ""
+        	resultReturn = resultReturn + "["
         	for i in k:
 	            resultReturn = resultReturn + '{"x":' + str(i[0]) + ", " + "y"+":"+str(i[1])+ "},"
 	        resultReturn = resultReturn + "]"
@@ -71,6 +73,7 @@ def hello(imageurl):
         	result.append(resultReturn)
         for k in coordinates_result3:
         	resultReturn = ""
+        	resultReturn = resultReturn + "["
         	for i in k:
 	            resultReturn = resultReturn + '{"x":' + str(i[0]) + ", " + "y"+":"+str(i[1])+ "},"
 	        resultReturn = resultReturn + "]"
