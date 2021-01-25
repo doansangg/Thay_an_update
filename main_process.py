@@ -6,6 +6,7 @@ import os
 import cv2
 import numpy as np
 from sang import find_max,find_1,find_2
+from add import get_coor12
 path_folder1 = "C:/Project/TopicFiles"
 from flask import Flask
 
@@ -23,23 +24,31 @@ def hello(imageurl):
 
     predict_class = predict(img, path_weight)
     if (predict_class == 1):  # square
-        coordinates_result1=get_coor1(img)
-        coordinates_result2=get_coor(img)
+        coordinates_result1 = get_coor1(img)
+        coordinates_result2 = get_coor(img)
+        coordinates_result3 = get_coor12(img)
         resultReturn = ""
         resultReturn = resultReturn + "["
         for i in coordinates_result1:
-            resultReturn = resultReturn + '{"x":' + str(i[0]) + ", " + '"y"'+":"+str(i[1])+ "},"
+            resultReturn = resultReturn + '{"x":' + str(i[0]) + ", " + '"y"' + ":" + str(i[1]) + "},"
         resultReturn = resultReturn + "]"
         resultReturn = resultReturn.replace(",]", "]")
-        resultReturn1=""
+        resultReturn1 = ""
         resultReturn1 = resultReturn1 + "["
         for i in coordinates_result2:
-            resultReturn1 = resultReturn1 + '{"x":' + str(i[0]) + ", " + '"y"'+":"+str(i[1])+ "},"
+            resultReturn1 = resultReturn1 + '{"x":' + str(i[0]) + ", " + '"y"' + ":" + str(i[1]) + "},"
         resultReturn1 = resultReturn1 + "]"
         resultReturn1 = resultReturn1.replace(",]", "]")
-        result=[]
+        resultReturn2 = ""
+        resultReturn2 = resultReturn2 + "["
+        for i in coordinates_result3:
+            resultReturn2 = resultReturn2 + '{"x":' + str(i[0]) + ", " + '"y"' + ":" + str(i[1]) + "},"
+        resultReturn2 = resultReturn2 + "]"
+        resultReturn2 = resultReturn2.replace(",]", "]")
+        result = []
         result.append(resultReturn)
         result.append(resultReturn1)
+        result.append(resultReturn2)
         print(result)
         return result
     if (predict_class == 2):  # square
