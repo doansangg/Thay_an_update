@@ -6,14 +6,14 @@ import os
 import cv2
 import numpy as np
 from sang import find_max,find_1,find_2
-path_folder1 = "C:/Project/TopicFiles"
-from flask import Flask
-
-app = Flask(__name__)
-
-
-@app.route("/chooseImg/<imageurl>")
-
+path_folder1 = "/home/doan/Documents/data/Thay_an_1"
+# from flask import Flask
+#
+# app = Flask(__name__)
+#
+#
+# @app.route("/chooseImg/<imageurl>")
+imageurl='8.jpg'
 
 def hello(imageurl):
     path_folder = "../a"
@@ -92,5 +92,6 @@ def hello(imageurl):
 
         return resultReturn
 if __name__ == "__main__":
-    # main(path_folder)
-    app.run(debug=True)
+    hello(imageurl)
+    #main(path_folder)
+    #app.run(debug=True)

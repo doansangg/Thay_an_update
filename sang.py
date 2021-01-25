@@ -61,7 +61,9 @@ def get_coor(cnt,X):
     list_image1=[[img[0]+X[0],img[1]+X[1]] for img in list_image1]
     return list_image1
 def find_1(img):
-    img=roi(img)[1]
+
+    X,img=roi(img)
+    print(X)
     lower=np.array([115,20,0])
     upper=np.array([169,255,255])
     img1=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -90,11 +92,18 @@ def find_1(img):
     contours = sorted(contours, key=cv2.contourArea, reverse=True)
     if(len(contours)>4):
         contours=contours[:4]
+    if( len(contours)<4):
+        for i in range(len(contours),4):
+            contours.append(contours[0])
+    list_img1=get_coor(contours[0],X)
+    list_img2=get_coor(contours[1],X)
+    list_img3=get_coor(contours[2],X)
+    list_img4=get_coor(contours[3],X)
     a=[]
-    a.append(list_img1,X)
-    a.append(list_img2,X)
-    a.append(list_img3,X)
-    a.append(list_img4,X)
+    a.append(list_img1)
+    a.append(list_img2)
+    a.append(list_img3)
+    a.append(list_img4)
     return a
 def find_2(img):
     X,img=roi(img)
@@ -127,6 +136,9 @@ def find_2(img):
     contours = sorted(contours, key=cv2.contourArea, reverse=True)
     if(len(contours)>4):
         contours=contours[:4]
+    if( len(contours)<4):
+        for i in range(len(contours),4):
+            contours.append(contours[0])
     list_img1=get_coor(contours[0],X)
     list_img2=get_coor(contours[1],X)
     list_img3=get_coor(contours[2],X)
