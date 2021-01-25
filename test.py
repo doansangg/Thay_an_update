@@ -6,6 +6,7 @@ import os
 import cv2
 import numpy as np
 from sang import find_max,find_1,find_2
+from add import get_coor12
 path_folder1 = "/home/doan/Documents/data/Thay_an_1"
 # from flask import Flask
 #
@@ -13,7 +14,7 @@ path_folder1 = "/home/doan/Documents/data/Thay_an_1"
 #
 #
 # @app.route("/chooseImg/<imageurl>")
-imageurl='8.jpg'
+imageurl='1.jpg'
 
 def hello(imageurl):
     path_folder = "../a"
@@ -25,6 +26,7 @@ def hello(imageurl):
     if (predict_class == 1):  # square
         coordinates_result1=get_coor1(img)
         coordinates_result2=get_coor(img)
+        coordinates_result3 = get_coor12(img)
         resultReturn = ""
         resultReturn = resultReturn + "["
         for i in coordinates_result1:
@@ -37,9 +39,16 @@ def hello(imageurl):
             resultReturn1 = resultReturn1 + '{"x":' + str(i[0]) + ", " + '"y"'+":"+str(i[1])+ "},"
         resultReturn1 = resultReturn1 + "]"
         resultReturn1 = resultReturn1.replace(",]", "]")
+        resultReturn2=""
+        resultReturn2 = resultReturn2 + "["
+        for i in coordinates_result3:
+            resultReturn2 = resultReturn2 + '{"x":' + str(i[0]) + ", " + '"y"'+":"+str(i[1])+ "},"
+        resultReturn2 = resultReturn2 + "]"
+        resultReturn2 = resultReturn2.replace(",]", "]")
         result=[]
         result.append(resultReturn)
         result.append(resultReturn1)
+        result.append(resultReturn2)
         print(result)
         return result
     if (predict_class == 2):  # square
